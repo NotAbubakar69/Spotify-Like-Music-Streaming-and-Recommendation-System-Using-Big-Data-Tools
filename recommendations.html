@@ -1,0 +1,91 @@
+{% block content %}
+<main>
+    <!-- Add your content here -->
+    <div class="background-block" style="background-color: #1f2833;"></div>
+    <div class="background-block" style="background-color: #66FCF1;"></div>
+    <div class="background-block" style="background-color: #45A29E;"></div>
+    <div class="background-block" style="background-color: #2F4858;"></div>
+    <div class="background-block" style="background-color: #C5C6C7;"></div>
+
+    <div class="center-content">
+        <div class="recommendations-container">
+            <h2>Recommendations</h2>
+            <div class="recommendations-list">
+                <ul>
+                    {% for recommendation in recommendations %}
+                    <li>
+                        <p>Recommended Track: {{ recommendation['recommended_track'] }}</p>
+                        <p>Similarity Score: {{ recommendation['similarity_score'] }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block styles %}
+<style>
+    /* CSS to center content vertically and horizontally */
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Make the main container cover the entire viewport height */
+        position: relative; /* Ensure background blocks are positioned relative to the main container */
+    }
+
+    .center-content {
+        text-align: center; /* Center align content */
+        position: relative; /* Ensure content is positioned relative to the main container */
+        z-index: 1; /* Ensure content is on top of background blocks */
+    }
+
+    .recommendations-container {
+        background-color: #fff; /* Plain background color */
+        padding: 20px; /* Add padding for spacing */
+        border-radius: 10px; /* Add border radius for rounded corners */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    }
+
+    /* Add this CSS to underline the "Recommendations" heading */
+    .recommendations-container h2 {
+        text-decoration: underline;
+    }
+
+
+    .recommendations-list {
+        text-align: left; /* Align list items to the left */
+    }
+
+    .recommendations-list ul {
+        list-style: none; /* Remove default list styles */
+        padding: 0; /* Remove default padding */
+    }
+
+    .recommendations-list ul li {
+        margin-bottom: 10px; /* Add margin between list items */
+    }
+
+    .background-block {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0.5;
+        animation: colorChange 20s infinite;
+    }
+
+    /* Define keyframes for color change animation */
+    @keyframes colorChange {
+        0% { background-color: #1f2833; }
+        25% { background-color: #66FCF1; }
+        50% { background-color: #45A29E; }
+        75% { background-color: #2F4858; }
+        100% { background-color: #C5C6C7; }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Other meta tags and styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Music Streaming Platform{% endblock %}</title>
+    <style>
+        /* Add global styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Style the background blocks */
+        .background-block {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.5;
+            animation: colorChange 20s infinite;
+        }
+
+        /* Define keyframes for color change animation */
+        @keyframes colorChange {
+            0% { background-color: #1f2833; }
+            25% { background-color: #66FCF1; }
+            50% { background-color: #45A29E; }
+            75% { background-color: #2F4858; }
+            100% { background-color: #C5C6C7; }
+        }
+
+        /* Style the content */
+        header {
+            text-align: center;
+            margin-top: 20px; /* Move header upwards */
+        }
+
+        header h1 {
+            color: #66FCF1;
+            font-size: 70px; /* Adjust the font size of Spotify */
+            margin-bottom: 0; /* Reduce space below the heading */
+            margin-top: -170px; /* Move Spotify heading upwards */
+        }
+
+        header p {
+            font-size: 23px; /* Adjust the font size of the description */
+            margin-top: 30px; /* Maintain space between heading and description */
+        }
+
+        /* Style the footer */
+        footer {
+            position: fixed;
+            bottom: 0; /* Align footer to the bottom */
+            width: 100%; /* Full width */
+            background-color: #333; /* Dark background color */
+            padding: 20px 0; /* Add some vertical padding */
+            text-align: center; /* Center align text */
+            color: #fff; /* Text color */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space between items */
+            align-items: center; /* Center items vertically */
+        }
+
+        footer p {
+            margin: 0; /* Remove default margin */
+        }
+
+        footer .social-icons {
+            display: flex;
+            flex-direction: column; /* Align items in a column */
+            align-items: flex-start; /* Align items to the left */
+        }
+
+        footer .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            margin-top: 10px; /* Add space between social icons */
+            margin-bottom: 5px; /* Add bottom margin for spacing */
+        }
+
+        footer .social-icons a i {
+            color: #0B0C10; /* Set color of social media icons */
+            margin-right: 10px; /* Add right margin between icons */
+        }
+
+        footer .social-icons p {
+            margin-bottom: 10px; /* Add space between "Our Socials" text and social icons */
+            margin-right: 10px; /* Add right margin for alignment */
+        }
+        
+        footer .music-logo {
+            width: 70px;
+            height: 70px;
+            background-color: #66FCF1; /* Change background color to black */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: -190px; /* Move music logo to the left */
+        }
+
+        /* Style the music icon to be black */
+        .music-logo i {
+            color: #000; /* Set color of music icon to black */
+        }
+
+        /* Style the get started button */
+        .get-started {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .get-started button {
+            color: #fff;
+            text-decoration: none;
+            background-color: #333; /* Change button background color */
+            padding: 20px 50px; /* Adjust button padding to increase size */
+            border-radius: 10px; /* Add border radius */
+            transition: background-color 0.3s ease;
+        }
+
+        .get-started button:hover {
+            background-color: #66FCF1; /* Change button hover background color */
+            color: #0B0C10;
+        }
+    </style>
+    {% block styles %}{% endblock %}
+</head>
+<body>
+<!-- Background blocks -->
+<div class="background-block" style="background-color: #1f2833;"></div>
+<div class="background-block" style="background-color: #66FCF1;"></div>
+<div class="background-block" style="background-color: #45A29E;"></div>
+<div class="background-block" style="background-color: #2F4858;"></div>
+<div class="background-block" style="background-color: #C5C6C7;"></div>
+
+<header>
+    <div>
+        <div>
+            <h1>Spotify</h1>
+        </div>
+        <div>
+            <p><strong>Discover new music, create playlists, and explore trending tracks.</strong></p>
+
+        </div>
+    </div>
+</header>
+<main>
+    <!-- Add your content here -->
+    <div class="get-started">
+        <form action="{{ url_for('start_kafka_producer') }}" method="post" class="get-started">
+            <button type="submit">Dive in Melodies</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 Your Music Streaming Platform</p>
+    <div class="music-logo">
+        <i class="fas fa-music"></i>
+    </div>
+    <div class="social-icons">
+        <p>Our Socials</p>
+        <div>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
